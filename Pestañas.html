@@ -1,36 +1,109 @@
-<html>
-<header>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="Pestañas 2.css">
-    <script src="./Pestañas 3.js"></script>
-</header>
-<nav>
-    <div class="pestañas">
-        <ul class="lista">  
-          <li class="pest" onclick="easyTabs()">Juego</li>  
-          <li class="pest" onclick="easyTabs()">Descripción del juego</li> 
-          <li class="pest" onclick="easyTabs()">Autores</li>  
-          <li class="pest" onclick="easyTabs()">Multimedia</li> 
-          <li class="pest" onclick="easyTabs()">Desarrollo</li> 
-          <li class="pest" onclick="easyTabs()">Referencias</li> 
+<!DOCTYPE html> 
 
+  <html lang="es">
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-        </ul>
-        <ul class="contenidos">
-          <li class="contenido"><p>Contiene el juego en sí</p></li>
-          <li class="contenido"><p>Describe el objetivo, temática, instrucciones...
-        </p></li>
-          <li class="contenido"><p>Esta página debe reflejar las responsabilidades generales de cada miembro del equipo (es decir, el rol o roles principales de cada uno: coordinación, desarrollo (HTML/CSS/JavaScript), diseño creativo, etc.).</p></li>
-          <li class="contenido"><p>Esta página integrará un flujo multimedia generado externamente mediante el framework de Gstreamer junto a una explicación del mismo.
-        </p></li>
-          <li class="contenido"><p>Esta página debe resumir el proceso de desarrollo del proyecto. Se utilizará para la evaluación</p></li>
-          <li class="contenido"><p>Contendrá el listado de los recursos y referencias utilizados para el desarrollo.</p></li>
-        </ul>
-      </div>
+	<title>Práctica JavaScript: pestañas de navegación</title>
+	<script type="text/javascript" src="Pestañas 3.js"></script>
 
-<section>
+  <style type="text/css" src="pes">
+		p {
+			margin: 0;
+			padding: 0;
+		}
+		h1 {
+			font: bold 28px Arial;
+		}
+		.tab {
+			background: #d9d9d9;
+			-moz-border-radius: 5px 5px 0 0;
+            -webkit-border-radius: 5px 5px 0 0;
+            font: bold 12px Arial;
+            padding: 3px 30px;
+            cursor: pointer;
+		}
+		.content {
+			height: 950px;
+			background: #d9d9d9;
+			font: 12px Arial;
+			display: none;
+			margin: 0;
+		}
+		.current {
+			background: #eee;
+			padding: 15px;
+			display: block;
+		}
+		.currentab {
+			background: #eee;
+			cursor: default;
+		}
+		footer {
+			font: 12px Arial;
+		}
+		figure{
+			margin: 8px;
+			padding: 2px;
+		}
+    </style>
+	
+	</head>
+	
+	<body>
+		<header>
+			<h1>La rata escapando bombas </h1>
+		</header>
+		
+		<nav id="main">
+			<span class="tab currentab">Inicio</span>
+			<span class="tab">Juego</span>
+			<span class="tab">Descripion del Juego</span>
+      <span class="tab">Multimedia</span>
+			<span class="tab">Desarrollo</span>
+      <span class="tab">Referencias</span>
 
-</section>
-<footer>
+		</nav>
+		
+		<section class="content current">
+	        <p>Esta es la página de inicio de la web de nuestra empresa</p>
+            <p>Nos gusta usar 
+            	<a href="http://www.w3.org/html/logo/">
+            	</a>
+            </p>
+        </section>
+        
+        <section class="content">
+          <p>Contiene el juego en sí.</p>
+          <canvas id="myCanvas"  style="border:10px solid #d3d3d3;", style="background-color: #f1f1f1;"></canvas>
 
-</footer>
+          </section>
+        
+        <section class="content">
+          <p>Describe el objetivo, temática, instrucciones    </p>
+
+        </section>
+        <section class="content">
+          <p>Esta página debe reflejar las responsabilidades generales de cada miembro del equipo (es decir, el rol o roles
+            principales de cada uno: coordinación, desarrollo (HTML/CSS/JavaScript), diseño creativo, etc.).</p>
+        </section>
+        <section class="content">
+          <p>Esta página integrará un flujo multimedia generado externamente mediante el framework de Gstreamer junto a una
+            explicación del mismo.
+          </p>
+        </section>
+        <section class="content">
+          <p>Esta página debe resumir el proceso de desarrollo del proyecto. Se utilizará para la evaluación</p>
+
+        </section>
+        <section class="content">
+          <p>Contendrá el listado de los recursos y referencias utilizados para el desarrollo.</p>
+
+        </section>
+		<footer>
+      <br />
+
+		</footer>
+	</body>
+</html>
+
