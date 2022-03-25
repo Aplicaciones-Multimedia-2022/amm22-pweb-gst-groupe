@@ -131,16 +131,16 @@ function updateGameArea() {
   myGameArea.clear();
   myGameArea.frameNo += 1;
   if (myGameArea.frameNo == 1 || everyinterval(110)) {
-    xobstacle = Math.floor(Math.random() * 880);
-    yobstacle = Math.floor(Math.random() * 480);
-    myObstacles.push(new component(40, 40, "https://cdn-icons-png.flaticon.com/512/32/32128.png", xobstacle, yobstacle, "image"));
+    xobstacle = Math.floor(Math.random() * 150);
+    yobstacle = Math.floor(Math.random() * 150);
+    myObstacles.push(new component(40, 40, "https://cdn-icons-png.flaticon.com/512/32/32128.png",myGamePiece.x+xobstacle,myGamePiece.y+ yobstacle, "image"));
   }
-  if (myGameArea.frameNo == 1 || everyinterval(10)) {
+  if (myGameArea.frameNo == 1 || everyinterval(5)) {
     xobstacle1 = Math.floor(Math.random() * 880);
     yobstacle1 = Math.floor(Math.random() * 480);
     muro.push(new component(40, 40, "red", xobstacle1, yobstacle1,));
   }
-  for (i = 0; i <17; i += 1) {
+  for (i = 0; i <40; i += 1) {
     muro[i].update();
 
   }
