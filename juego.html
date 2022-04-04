@@ -1,192 +1,103 @@
 <!DOCTYPE html>
 <html>
-
+   
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
-        canvas {
-            border: 10px solid #d3d3d3;
-            background-color: #ffffff;
-        }
+        * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  overflow: hidden;
+}
+
     </style>
 
 </head>
-	<script type="text/javascript" src="juego.js"></script>
+	
 
-<body onload="startGame()">
-
+<body >
+    <canvas id="canvas"width="20" height="10"></canvas>
     <script>
-var myGamePiece;
-var myObstacles = [];
-var myScore;
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
+//Set the width & height of the canvas to match the viewport dimensions
+canvas.width = innerWidth;
+canvas.height = innerHeight;
+//Get access to the sprite sheet
+const subZeroSpriteSheet = new Image();
+subZeroSpriteSheet.src = "https://raw.githubusercontent.com/Aplicaciones-Multimedia-2022/amm22-pweb-gst-groupe/main/ezgif.com-gif-maker%20(1).png";
+subZeroSpriteSheet.onload = loadImages;
+//There are 7 different sprites on 2 rows
+let cols = 8;
+let rows = 1;
+//Work out the size of individual sprites because they are evenly spaced apart
+let spriteWidth = subZeroSpriteSheet.width / cols;
+let spriteHeight = subZeroSpriteSheet.height / rows;
+//So increased image size can still retain its pixel art style
+ctx.webkitImageSmoothingEnabled = false;
+ctx.imageSmoothingEnabled = false;
+//So the animation can play
+let totalFrames = 8; //Because there are 7 sprites in total. Therefore the animation will take place over 7 frames
+let currentFrame = 0;
+//So the source position can be updated
+let srcX = 0;
+let srcY = 0;
+//Record the number of times the 'animate' function has been called
+let framesDrawn = 0;
 
+function animate() {
+    ctx.clearRect(0,0,canvas.width,canvas.height); // So the contents of the previous frame can be cleared
+    requestAnimationFrame(animate); //The function will be called repeatedly on each new frame
 
-function startGame() {
-    myGamePiece = new component(70, 70, "https://raw.githubusercontent.com/Aplicaciones-Multimedia-2022/amm22-pweb-gst-groupe/main/hogsqueel_alldir_x2_and_actual.webp%20(2).gif", 10, 120, "image");
-    myScore = new component("30px", "Consolas", "black", 280, 40, "text");
-    myGameArea.start();
-}
+    currentFrame = currentFrame % totalFrames; //Work out the current frame of the animation. Remember that 0 counts as the first image of the animation.
+    srcX = currentFrame * spriteWidth; //Src position is updated to show the new sprite image
 
-var myGameArea = {
-    canvas: document.createElement("canvas"),
-    start: function () {
-        this.canvas.width = 480;
-        this.canvas.height = 270;
-        this.context = this.canvas.getContext("2d");
-        document.body.insertBefore(this.canvas, document.body.childNodes[0]);
-        this.frameNo = 0;
-        clearInterval(this.interval);
+    //image, srcX, srcY, srcWidth, srcHeight, destX, destY, destWidth, destHeight
+    ctx.save();
+    resizeImage();
+    ctx.drawImage(subZeroSpriteSheet, srcX, srcY, spriteWidth, spriteHeight, 0, 0, spriteWidth, spriteHeight);
+  
+    ctx.restore();
 
-        this.interval = setInterval(updateGameArea, 1);
-        window.addEventListener('keydown', function (e) {
-            myGameArea.key = e.keyCode;
-        })
-        window.addEventListener('keyup', function (e) {
-            myGameArea.key = false;
-        })
-    },
-    clear: function () {
-        this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    },
-    stop: function () {
-        clearInterval(this.interval);
-
-
+    framesDrawn++;
+    if(framesDrawn >= 10){
+        currentFrame++;
+        framesDrawn = 0;
     }
 }
 
-function component(width, height, color, x, y, type) {
-    this.type = type;
-    if (type == "image") {
-        this.image = new Image();
-        this.image.src = color;
+function resizeImage() {
+    let scaleFactor = 4;
+    let midXPos = innerWidth / 2 - (spriteWidth * scaleFactor) / 2;
+    let midYPos = innerHeight / 2 - (spriteHeight * scaleFactor) / 2;
+    ctx.translate(midXPos, midYPos);
+    ctx.scale(scaleFactor, scaleFactor);
+}
+
+addEventListener("keydown", e => {
+    if(e.key === "ArrowLeft"){
+        srcY = 1 * spriteHeight;
     }
-    this.width = width;
-    this.height = height;
-    this.speedX = 0;
-    this.speedY = 0;
-    this.x = x;
-    this.y = y;
-    this.update = function () {
-        ctx = myGameArea.context;
-        if (type == "image") {
-            ctx.drawImage(this.image,
-                this.x,
-                this.y,
-                this.width, this.height);
-        } else if (this.type == "text") {
-            ctx.font = this.width + " " + this.height;
-            ctx.fillStyle = color;
-            ctx.fillText(this.text, this.x, this.y);
-        }
-        else {
-            ctx.fillStyle = color;
-            ctx.fillRect(this.x, this.y, this.width, this.height);
-        }
+});
+
+addEventListener("keydown", e => {
+    if(e.key === "ArrowRight"){
+        srcY = 0 * spriteHeight;
     }
-    this.newPos = function () {
-        this.x += this.speedX;
-        this.y += this.speedY;
-    }
-    this.crashWith = function (otherobj) {
-        var myleft = this.x;
-        var myright = this.x + (this.width);
-        var mytop = this.y;
-        var mybottom = this.y + (this.height);
-        var otherleft = otherobj.x;
-        var otherright = otherobj.x + (otherobj.width);
-        var othertop = otherobj.y;
-        var otherbottom = otherobj.y + (otherobj.height);
-        var crash = true;
-        if ((mybottom < othertop) || (mytop > otherbottom) || (myright < otherleft) || (myleft > otherright)) {
-            crash = false;
-        }
-        return crash;
-    }
+})
+
+//So the canvas can't be rendered before the image
+let numOfImages = 1;
+function loadImages() {
+    if(--numOfImages > 0) return;
+    animate();
 }
-
-function updateGameArea() {
-    for (i = 0; i < myObstacles.length; i += 1) {
-        if (myGamePiece.crashWith(myObstacles[i]) && everyinterval(200)) {
-            return;
-        }
-    }
-    myGameArea.clear();
-    myGameArea.frameNo += 1;
-   /* if (myGameArea.frameNo == 1 || everyinterval(110)) {
-        xobstacle = Math.floor(Math.random() * 460);
-        yobstacle = Math.floor(Math.random() * 250);
-        myObstacles.push(new component(40, 40, "https://cdn-icons-png.flaticon.com/512/32/32128.png", xobstacle, yobstacle, "image"));
-    }
-    for (i = 0; i < myObstacles.length; i += 1) {
-        myObstacles[i].update();
-        myObstacles = myObstacles.slice(i);
-
-    }*/
-    myScore.text = "SCORE: " + myGameArea.frameNo;
-    myScore.update();
-    myGamePiece.newPos();
-    myGamePiece.update();
-    clearmove()
-    if (myGameArea.key && myGameArea.key == 37) { moveleft() }
-    if (myGameArea.key && myGameArea.key == 39) { moveright() }
-    if (myGameArea.key && myGameArea.key == 38) { moveup() }
-    if (myGameArea.key && myGameArea.key == 40) { movedown() }
-
-}
-
-
-function everyinterval(n) {
-    if ((myGameArea.frameNo / n) % 1 == 0) { return true; }
-    return false;
-}
-
-function moveup() {
-
-    myGamePiece = new component(70, 70, "https://raw.githubusercontent.com/Aplicaciones-Multimedia-2022/amm22-pweb-gst-groupe/main/hogsqueel_alldir_x2_and_actual.webp%20(1).gif", myGamePiece.x, myGamePiece.y, "image");
-    myGamePiece.speedY = -1;
-
-}
-
-function movedown() {
-    myGamePiece = new component(70, 70, "https://raw.githubusercontent.com/Aplicaciones-Multimedia-2022/amm22-pweb-gst-groupe/main/hogsqueel_alldir_x2_and_actual.webp%20(2).gif", myGamePiece.x, myGamePiece.y, "image");
-
-    myGamePiece.speedY = 1;
-}
-
-function moveleft() {
-    myGamePiece = new component(70, 70, "https://raw.githubusercontent.com/Aplicaciones-Multimedia-2022/amm22-pweb-gst-groupe/main/hogsqueel_alldir_x2_and_actual.webp.gif", myGamePiece.x, myGamePiece.y, "image");
-
-    myGamePiece.speedX = -1;
-}
-
-function moveright() {
-    myGamePiece = new component(70, 70, "https://raw.githubusercontent.com/Aplicaciones-Multimedia-2022/amm22-pweb-gst-groupe/main/hogsqueel_alldir_x2_and_actual.webp%20(3).gif", myGamePiece.x, myGamePiece.y, "image");
-
-    myGamePiece.speedX = 1;
-}
-
-function clearmove() {
-    myGamePiece.speedX = 0;
-    myGamePiece.speedY = 0;
-}
-function clickPlayagain() {
-    reset();
-    startGame();
-
-}
-function reset() {
-    myGamePiece = undefined;
-    myObstacles = [];
-    myScore = "";
-}
-      
     </script>
-    <div style="text-align:center;width:480px;">
-      
-        <button id="playagain" onclick="clickPlayagain()">Play again</button>
-
-    </div>
+   
 </body>
 
 </html>
