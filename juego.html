@@ -29,7 +29,7 @@ canvas.width = innerWidth;
 canvas.height = innerHeight;
 //Get access to the sprite sheet
 const subZeroSpriteSheet = new Image();
-subZeroSpriteSheet.src = "https://raw.githubusercontent.com/Aplicaciones-Multimedia-2022/amm22-pweb-gst-groupe/main/ezgif.com-gif-maker%20(1).png";
+subZeroSpriteSheet.src = "https://raw.githubusercontent.com/Aplicaciones-Multimedia-2022/amm22-pweb-gst-groupe/main/mu%C3%B1ecoizquierda.png";
 subZeroSpriteSheet.onload = loadImages;
 //There are 7 different sprites on 2 rows
 let cols = 8;
@@ -60,7 +60,7 @@ function animate() {
     ctx.save();
     resizeImage();
     ctx.drawImage(subZeroSpriteSheet, srcX, srcY, spriteWidth, spriteHeight, 0, 0, spriteWidth, spriteHeight);
-  
+    
     ctx.restore();
 
     framesDrawn++;
