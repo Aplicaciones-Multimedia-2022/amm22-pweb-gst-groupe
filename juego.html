@@ -20,7 +20,7 @@ body {
 	
 
 <body >
-    <canvas id="canvas"width="20" height="10"></canvas>
+    <canvas id="canvas"></canvas>
     <script>
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
@@ -29,7 +29,7 @@ canvas.width = innerWidth;
 canvas.height = innerHeight;
 //Get access to the sprite sheet
 const subZeroSpriteSheet = new Image();
-subZeroSpriteSheet.src = "https://raw.githubusercontent.com/Aplicaciones-Multimedia-2022/amm22-pweb-gst-groupe/main/mu%C3%B1ecoizquierda.png";
+subZeroSpriteSheet.src = "https://raw.githubusercontent.com/Aplicaciones-Multimedia-2022/amm22-pweb-gst-groupe/main/mu%C3%B1ecoizquierda1.png";
 subZeroSpriteSheet.onload = loadImages;
 //There are 7 different sprites on 2 rows
 let cols = 8;
@@ -59,7 +59,7 @@ function animate() {
     //image, srcX, srcY, srcWidth, srcHeight, destX, destY, destWidth, destHeight
     ctx.save();
     resizeImage();
-    ctx.drawImage(subZeroSpriteSheet, srcX, srcY, spriteWidth, spriteHeight, 0, 0, spriteWidth, spriteHeight);
+    ctx.drawImage(subZeroSpriteSheet, srcX, srcY, spriteWidth, spriteHeight, 90, 0, spriteWidth, spriteHeight);
     
     ctx.restore();
 
@@ -78,17 +78,7 @@ function resizeImage() {
     ctx.scale(scaleFactor, scaleFactor);
 }
 
-addEventListener("keydown", e => {
-    if(e.key === "ArrowLeft"){
-        srcY = 1 * spriteHeight;
-    }
-});
 
-addEventListener("keydown", e => {
-    if(e.key === "ArrowRight"){
-        srcY = 0 * spriteHeight;
-    }
-})
 
 //So the canvas can't be rendered before the image
 let numOfImages = 1;
