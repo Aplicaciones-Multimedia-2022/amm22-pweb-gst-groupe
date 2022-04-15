@@ -1,4 +1,7 @@
 
+
+
+
 window.onload = function () {
   var nav = document.getElementById("main");
   tabs = nav.getElementsByTagName("span");
@@ -25,6 +28,8 @@ function activateTab() {
     }
   }
 }
+
+
 
 //Aqui empieza el javascript del Juego
 var myGamePiece;
@@ -206,3 +211,16 @@ function reset() {
   myObstacles = [];
   myScore = "";
 }
+
+const navToggle = document.querySelector(".nav_toggle");
+const navMenu = document.querySelector(".nav_menu");
+
+/*navToggle.addEventListener("click", () => {
+    navMenu.classList.toggle("nav_menu_visible");
+
+    if (navMenu.classList.contains("nav_menu_visible")) {
+        navToggle.setAttribute("aria_label", "Cerrar menú");
+      } else {
+        navToggle.setAttribute("aria_label", "Abrir menú");
+      }
+});*/

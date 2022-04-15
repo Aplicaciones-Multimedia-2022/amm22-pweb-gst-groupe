@@ -1,40 +1,57 @@
+/*my new code START*/
+*{
+  margin:0;
+  box-sizing:border-box;
+}
+body{
+  padding: 90px 20px 0;
+}
+.header{
+  background-color: blueviolet;
+  height: 80px;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
 
+}
+/*my new code END*/
 
-  p {
-    margin: 0;
-    padding: 0;
-  }
-  h1 {
-    font: bold 28px Arial;
-  }
-  .tab {
-    background: #d9d9d9;
-    -moz-border-radius: 5px 5px 0 0;
-          -webkit-border-radius: 5px 5px 0 0;
-          font: bold 12px Arial;
-          padding: 3px 30px;
-          cursor: pointer;
-  }
-  .content {
-    height: 950px;
-    background: #d9d9d9;
-    font: 12px Arial;
-    display: none;
-    margin: 0;
-  }
-  .current {
-    background: #eee;
-    padding: 15px;
-    display: block;
-  }
-  .currentab {
-    background: #eee;
-    cursor: default;
-  }
-  footer {
-    font: 12px Arial;
-  }
-  figure{
-    margin: 8px;
-    padding: 2px;
-  }
+/*p {
+  margin: 0;
+  padding: 0;
+}*/
+h1 {
+  font: bold 28px Arial;
+}
+.tab {
+  background: green;
+  -moz-border-radius: 5px 5px 0 0;
+        -webkit-border-radius: 5px 5px 0 0;
+        font: bold 12px Arial;
+        padding: 3px 30px;
+        cursor: pointer;
+}
+.content {
+  height: 950px;
+  background: #d9d9d9;
+  font: 12px Arial;
+  display: none;
+  margin: 0;
+}
+.current {
+  background: yellow;
+  padding: 15px;
+  display: block;
+}
+.currentab {
+  background: rgb(139, 80, 80);
+  cursor: default;
+}
+footer {
+  font: 12px Arial;
+}
+figure{
+  margin: 8px;
+  padding: 2px;
+}

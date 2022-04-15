@@ -1,0 +1,309 @@
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body{
+  padding: 90px 20px 0;
+  background-color: transparent;
+  background-image: url('paisaje.jpg');
+  
+}
+header{
+  width: 500px;
+  margin:0 auto;
+  background-image: url('cerdonio.jpeg');
+  padding: 8rem 10rem;
+  border-radius: 50%;
+}
+
+#main{
+  background-color: transparent;
+  height: 80px;
+  position: fixed;
+  top:0;
+  width: 100%;
+}
+
+.logo{
+  background-image: url('groupE1.png');
+  height: 10px;
+  position: left;
+  top:0;
+  width: 10px;
+  /*color:aliceblue;
+  font-size: 30px;
+  font-weight: bold;
+  padding: 0 40px;
+  line-height: 80px;
+  text-decoration: none;
+  font-family: 'Rubik Glitch', cursive;*/
+}
+.column{
+  margin: 0px;
+  padding: 10px;
+  
+  width: 20%;
+}
+.left{
+  float: left;
+  padding: 10px;
+  width: 100px;
+  height:100px;
+}
+
+
+.tab{
+  font-size: 20px;
+  margin: 0 10px;
+  line-height: 80px;
+  font-family: 'Rubik Glitch', cursive;
+  padding: 5px 5px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.tab:hover,
+.tab_active {
+  background-color: gray;
+  transition: 0.5s;
+}
+.imagen_personal{
+  width: 200px;
+  height: 200px;
+  position: relative;
+  left: 25%;
+  
+}
+
+.content {
+  height: 2000px;
+  nav-right: 100px; 
+  background: #d9d9d9;
+  font-size: 20px;
+  font-family: 'Shadows Into Light', cursive;
+  display: none;
+  margin: 0;
+}
+footer {
+  font-family: 'Shadows Into Light', cursive;
+  font-size: 15px;
+}
+/*
+
+.tab:hover,
+.tab_active {
+  background-color: gray;
+  transition: 0.5s;
+}
+*/
+
+/*p {
+  margin: 0;
+  padding: 0;
+}*/
+
+/*.tab {
+  background: green;
+  -moz-border-radius: 5px 5px 0 0;
+        -webkit-border-radius: 5px 5px 0 0;
+        font: bold 12px Arial;
+        padding: 3px 30px;
+        cursor: pointer;
+}*/
+/*.content {
+  height: 950px;
+  background: #d9d9d9;
+  font: 12px Arial;
+  display: none;
+  margin: 0;
+}*/
+.current {
+  background: transparent;
+  padding: 15px;
+  display: block;
+}
+.currentab {
+  background:rosybrown;
+  cursor: default;
+}
+
+figure{
+  margin: 8px;
+  padding: 2px;
+}
+
+.contenido{ 
+  width: 400px; /*Ancho de 400px igual que el tamaño de las imágenes*/
+  margin: 0 auto; /*Para que se centren y los textos se queden en la izquierda*/
+}
+section article{
+  transition: box-shadow 0.3s ease;
+  background-color: white;
+  margin: 1rem 0;
+  border-radius: 0.5rem;
+  padding: 0.2rem 0rem ;
+  cursor: pointer;
+}
+section article :hover{
+  box-shadow: 0.01rem 0.4rem rgba(0,0,0,)3
+}
+
+section article h2, section article p{
+  margin: 1rem;
+
+}
+
+footer{
+  background-color: transparent;
+  background-color: transparent;
+  padding: 3rem;
+  color:wheat;
+  
+}
+footer section{
+  float: right;
+}
+footer p{
+  
+  margin: 0;
+} 
+footer section a{
+  transition: color 0.3s ease;
+  color: white;
+  text-decoration: none;
+}
+
+footer a :hover{
+  color:cornflowerblue
+
+} */
+.contenido{ 
+  width: 400px; /*Ancho de 400px igual que el tamaño de las imágenes*/
+  margin: 0 auto; /*Para que se centren y los textos se queden en la izquierda*/
+}
+
+section article{
+  transition: box-shadow 0.3s ease;
+  background-color: white;
+  margin: 1rem 0;
+  border-radius: 0.5rem;
+  padding: 0.2rem 0rem ;
+  cursor: pointer;
+}
+section article :hover{
+  box-shadow: 0.01rem 0.4rem rgba(0,0,0,)3
+}
+
+section article h2, section article p{
+  margin: 1rem;
+
+}
+
+footer{
+  background-color: transparent;
+  padding: 3rem;
+  color:blue
+}
+footer section{
+  float: right;
+}
+footer p{
+  margin: 0;
+} 
+
+footer section a{
+  transition: color 0.3s ease;
+  color: white;
+  text-decoration: none;
+}
+
+footer a :hover{
+  color:cornflowerblue
+
+} 
+
+/*Para el movil
+Todo el estilo dentro de @media se le aplicará cuando está a 768px (movil )*/
+/*@media(max-width: 768px){
+  body{
+      padding-top: 70px;
+  }
+  .header{
+    height: 70px;
+  }
+  .logo{
+    font-size: 25px;
+    
+    padding: 0 20px;
+    line-height: 60px;
+  }
+
+  .nav_menu{
+    flex-direction: column;*/ /* que aparezcan en vertical
+    align-items: center;
+    margin-right: 0px;
+    background-color: aqua;
+    position: fixed;
+    left: 0;
+    top:auto;
+    width: 100%;
+    padding: 20px 0; 
+
+    height: calc(100% - 60px);
+    overflow-y: auto;
+
+    left: 100%;
+    transition: left 0.3s;
+}
+
+  .tab_menu_link:hover,
+  .tab_menu_link_active{
+        background: red;
+        color:gray;
+        
+    }
+    .nav_toggle{
+      display: block;
+  }
+  .nav_menu_visible{
+    left:0;
+}
+
+  /*.menu{
+      height: 60px;
+      flex-direction: column;  /*que aparezcan en vertical
+      align-items: center;
+      margin-right: 0px;
+      background-color: aqua;
+      position: fixed;
+      left: 0;
+      top: 60px;
+      width: 100%;
+      padding: 20px 0; 
+
+      height: calc(100% - 60px);
+      overflow-y: auto;
+
+      left: 100%;
+      transition: left 0.3s;
+  }
+  .logo{
+      font-size: 25px;  
+      padding: 0 20px;
+      line-height: 60px;
+  }
+  .tab{
+      line-height: 70px;
+  }
+
+  .tab_menu_link:hover,
+  .tab_menu_link_active{
+      background: none;
+      color:gray;
+
+  }
+  .nav_toggle{
+      display: block;
+  }
+}*/
