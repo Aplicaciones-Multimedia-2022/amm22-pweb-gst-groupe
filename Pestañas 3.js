@@ -36,8 +36,13 @@ var myGamePiece;
 var myScore;
 var myObstacles = [];
 var muro=[];
+var muro1=[];
+var muro2=[];
+var muro3=[];
+var muro4=[];
+
 function startGame() {
-    myGamePiece = new component(70, 70, "https://raw.githubusercontent.com/Aplicaciones-Multimedia-2022/amm22-pweb-gst-groupe/main/hogsqueel_alldir_x2_and_actual.webp%20(2).gif", 359, 250, "image");
+    myGamePiece = new component(50, 50, "https://raw.githubusercontent.com/Aplicaciones-Multimedia-2022/amm22-pweb-gst-groupe/main/hogsqueel_alldir_x2_and_actual.webp%20(2).gif", 359, 250, "image");
     myScore = new component("30px", "Consolas", "black", 350, 40, "text");
     myGameArea.start();
 }
@@ -45,7 +50,7 @@ function startGame() {
 var myGameArea = {
   start: function () {
     var mycanvas = document.getElementById("myCanvas");
-    
+    mycanvas.style.background=  "url(https://raw.githubusercontent.com/Aplicaciones-Multimedia-2022/amm22-pweb-gst-groupe/main/cesped1.jpg)";
     mycanvas.width = 900;
     mycanvas.height = 500;
     this.frameNo = 0;
@@ -130,25 +135,65 @@ function updateGameArea() {
       return;
     }
   }
-
-    
+ 
   
+
+
   myGameArea.clear();
   myGameArea.frameNo += 1;
+  if (myGameArea.frameNo == 1 || everyinterval(5)) {
+    xobstacle1 = Math.floor(Math.random() * 880);
+    yobstacle1 = Math.floor(Math.random() * 480);
+    muro.push(new component(40, 40, "https://raw.githubusercontent.com/Aplicaciones-Multimedia-2022/amm22-pweb-gst-groupe/main/pngwing.com%20(2).png", 100, yobstacle1,"image"));
+  }
+  for (i = 0; i <6; i += 1) {
+    muro[i].update();
+
+  }
+  if (myGameArea.frameNo == 1 || everyinterval(5)) {
+    xobstacle1 = Math.floor(Math.random() * 880);
+    yobstacle1 = Math.floor(Math.random() * 480);
+    muro1.push(new component(40, 40, "https://raw.githubusercontent.com/Aplicaciones-Multimedia-2022/amm22-pweb-gst-groupe/main/pngwing.com%20(2).png", 250, yobstacle1,"image"));
+  }
+  for (i = 0; i <6; i += 1) {
+    muro1[i].update();
+
+  }
+
+  if (myGameArea.frameNo == 1 || everyinterval(5)) {
+    xobstacle1 = Math.floor(Math.random() * 880);
+    yobstacle1 = Math.floor(Math.random() * 480);
+    muro2.push(new component(40, 40, "https://raw.githubusercontent.com/Aplicaciones-Multimedia-2022/amm22-pweb-gst-groupe/main/pngwing.com%20(2).png", 450, yobstacle1,"image"));
+  }
+  for (i = 0; i <6; i += 1) {
+    muro2[i].update();
+
+  }
+
+  if (myGameArea.frameNo == 1 || everyinterval(5)) {
+    xobstacle1 = Math.floor(Math.random() * 880);
+    yobstacle1 = Math.floor(Math.random() * 480);
+    muro3.push(new component(40, 40, "https://raw.githubusercontent.com/Aplicaciones-Multimedia-2022/amm22-pweb-gst-groupe/main/pngwing.com%20(2).png", 650, yobstacle1,"image"));
+  }
+  for (i = 0; i <6; i += 1) {
+    muro3[i].update();
+  }
+    if (myGameArea.frameNo == 1 || everyinterval(5)) {
+      xobstacle1 = Math.floor(Math.random() * 880);
+      yobstacle1 = Math.floor(Math.random() * 480);
+      muro4.push(new component(40, 40, "https://raw.githubusercontent.com/Aplicaciones-Multimedia-2022/amm22-pweb-gst-groupe/main/pngwing.com%20(2).png", 800, yobstacle1,"image"));
+    }
+    for (i = 0; i <6; i += 1) {
+      muro4[i].update();
+  
+    
+  }
   if (myGameArea.frameNo == 1 || everyinterval(110)) {
     xobstacle = Math.floor(Math.random() * 150);
     yobstacle = Math.floor(Math.random() * 150);
     myObstacles.push(new component(40, 40, "https://cdn-icons-png.flaticon.com/512/32/32128.png",myGamePiece.x+xobstacle,myGamePiece.y+ yobstacle, "image"));
   }
-  if (myGameArea.frameNo == 1 || everyinterval(5)) {
-    xobstacle1 = Math.floor(Math.random() * 880);
-    yobstacle1 = Math.floor(Math.random() * 480);
-    muro.push(new component(40, 40, "red", xobstacle1, yobstacle1,));
-  }
-  for (i = 0; i <40; i += 1) {
-    muro[i].update();
-
-  }
+ 
   for (i = 0; i < myObstacles.length; i += 1) {
     myObstacles[i].update();
     myObstacles = myObstacles.slice(i);
@@ -174,25 +219,33 @@ function everyinterval(n) {
 
 function moveup() {
 
-  myGamePiece = new component(70, 70, "https://raw.githubusercontent.com/Aplicaciones-Multimedia-2022/amm22-pweb-gst-groupe/main/hogsqueel_alldir_x2_and_actual.webp%20(1).gif", myGamePiece.x, myGamePiece.y, "image");
+  myGamePiece = new component(50, 50, "https://raw.githubusercontent.com/Aplicaciones-Multimedia-2022/amm22-pweb-gst-groupe/main/hogsqueel_alldir_x2_and_actual.webp%20(1).gif", myGamePiece.x, myGamePiece.y, "image");
   myGamePiece.speedY = -1;
 
 }
 
 function movedown() {
-  myGamePiece = new component(70, 70, "https://raw.githubusercontent.com/Aplicaciones-Multimedia-2022/amm22-pweb-gst-groupe/main/hogsqueel_alldir_x2_and_actual.webp%20(2).gif", myGamePiece.x, myGamePiece.y, "image");
+  myGamePiece = new component(50, 50, "https://raw.githubusercontent.com/Aplicaciones-Multimedia-2022/amm22-pweb-gst-groupe/main/hogsqueel_alldir_x2_and_actual.webp%20(2).gif", myGamePiece.x, myGamePiece.y, "image");
 
   myGamePiece.speedY = 1;
 }
 
 function moveleft() {
-  myGamePiece = new component(70, 70, "https://raw.githubusercontent.com/Aplicaciones-Multimedia-2022/amm22-pweb-gst-groupe/main/hogsqueel_alldir_x2_and_actual.webp.gif", myGamePiece.x, myGamePiece.y, "image");
+  myGamePiece = new component(50, 50, "https://raw.githubusercontent.com/Aplicaciones-Multimedia-2022/amm22-pweb-gst-groupe/main/hogsqueel_alldir_x2_and_actual.webp.gif", myGamePiece.x, myGamePiece.y, "image");
+  
+    
+  for (i = 0; i < muro1.length; i += 1) {
+    //if ((myGamePiece.crashWith(muro1[1])) || (myGamePiece.crashWith(muro1[2])) || (myGamePiece.crashWith(muro1[3])) || (myGamePiece.crashWith(muro1[4])) || (myGamePiece.crashWith(muro1[5]))) {
+      if (myGamePiece.crashWith(muro1[i])){
+    break;    
+}else  myGamePiece.speedX = -1, i++;
 
-  myGamePiece.speedX = -1;
+  }
+
 }
 
 function moveright() {
-  myGamePiece = new component(70, 70, "https://raw.githubusercontent.com/Aplicaciones-Multimedia-2022/amm22-pweb-gst-groupe/main/hogsqueel_alldir_x2_and_actual.webp%20(3).gif", myGamePiece.x, myGamePiece.y, "image");
+  myGamePiece = new component(50, 50, "https://raw.githubusercontent.com/Aplicaciones-Multimedia-2022/amm22-pweb-gst-groupe/main/hogsqueel_alldir_x2_and_actual.webp%20(3).gif", myGamePiece.x, myGamePiece.y, "image");
 
   myGamePiece.speedX = 1;
 }
