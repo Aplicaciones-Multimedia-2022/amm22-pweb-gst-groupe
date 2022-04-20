@@ -1,0 +1,240 @@
+<!DOCTYPE html> 
+
+<html lang="es">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<title>Práctica JavaScript: pestañas de navegación</title>
+<script type="text/javascript" src="p2.js"></script>
+<link rel = "stylesheet" href = "p2.css"/>
+
+  <script src="https://kit.fontawesome.com/ffcc4f344c.js" crossorigin="anonymous"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Grape+Nuts&family=Rubik+Glitch&family=Rubik+Moonrocks&family=Smooch+Sans&display=swap" rel="stylesheet">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Grape+Nuts&family=Rubik+Glitch&family=Rubik+Moonrocks&family=Shadows+Into+Light&family=Smooch+Sans&display=swap" rel="stylesheet">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Grape+Nuts&family=Raleway:ital,wght@1,500&family=Roboto+Mono:ital,wght@1,500&family=Rubik+Glitch&family=Rubik+Moonrocks&family=Shadows+Into+Light&family=Smooch+Sans&display=swap" rel="stylesheet">
+
+  
+
+</head>
+
+<body>
+  <header>
+  <!--Código previsto para el botón de "hamburguesa" para la reducción del tamaño de la ventana-->
+  <div class = "nav-toogle" id = "navToogle">
+    <img id="navClosed" class="navIcon" src="https://www.richardmiddleton.me/wp-content/themes/richardcodes/assets/img/hamburger.svg" alt="hamburger menu">
+    <img id="navOpen" class="navIcon hidden" src="https://www.richardmiddleton.me/wp-content/themes/richardcodes/assets/img/close.svg" alt="close hamburger">
+    
+  </div>
+  <nav id="main">
+    <!--<a href = "#" class = "logo nav_link">LOGO</a>-->
+    <!--<div class = "container tab">-->
+      <img src = "img/groupE1.png" class = "left"> 
+      
+  
+          
+
+          <!--<button class = "nav_toggle" aria_label="Abrir menú">
+              <i class="fas fa-bars"></i>
+          </button>-->
+
+    <span class="tab currentab tab_menu_link">Inicio</span>
+    <span class="tab tab_menu_link">Juego</span>
+    <span class="tab tab_menu_link">Descripcción</span>
+    <span class="tab tab_menu_link">Quiénes somos</span>
+    <span class="tab tab_menu_link">Multimedia</span>
+    <span class="tab tab_menu_link">Referencias</span>
+     
+          
+  </nav>
+      
+</header>
+      <section class="content_juego current">
+        <p>En esta página web vas ha encontrar un proyecto realizado por alumnos de la universidad Carlos III de Madrid de la asignatura "Aplicaciones Multimedia".</p>
+        <p>Hemos desarrollado esta página web para presentar nuestro juego basado en la película "Las crónicas de Spiderwick", con Cerdonio como personaje principal de la historia,
+          que se encuentra en un bosque lleno de bombas de la cual tiene que escapar de ello.
+        </p>
+        <img src="img/ccerdonio.jpeg" class = "imagen_inicio"/>
+      </section>
+      
+      <section class="content_juego">
+        <p class = "text_juego">ESCAPA DE LAS BOMBAS</p>
+        <br>
+        <br>
+
+        <canvas id="myCanvas" ></canvas>
+        <p id = "boton">Play again</p>
+
+      </section>
+      
+      <section class="content_descripcion">
+        
+          <ul>
+            <li>1.<p>En un principio nuestro personaje traspasaba los muros y para solucionarlo quisimos,
+              con un bucle, recorrer todos los bloques que conforman nuestros muros. Tras muchos
+              intentos esa forma no nos dio resultado, por lo que en nuestro código los bloques se
+              comprueban manualmente uno por uno si el personaje ha chocado con alguno de los
+              muros y cada vez que se entra en las funciones de los diferentes tipos de movimientos.</p></li>
+            <li>2.<p>Por otro lado, la bomba, al tener una configuración de aparición aleatoria a lo largo de
+              nuestro espacio, si coincidían sus coordenadas con las de alguno de nuestros bloques
+              se colocaba encima, algo que no nos pareció realista y que quisimos solucionar
+              declarando los bloques en una clase protegida en las que no estuviese permitido que
+              las coordenadas de otros elementos (la bomba en este caso) coincidiesen. No fuimos
+              capaces de que esto funcionase para todos los casos, ya que uno de los aspectos
+              principales de nuestro juego es que los bloques también se configuran de forma
+              aleatoria en cada partida y eso nos lo dificultó mucho, por lo que la solución final
+              acordada fue traer los muros al frente y dejar que la bomba quedase detrás de los
+              muros. Así con este diseño cuando ambos coinciden, la bomba queda detrás y no se
+              ve.</p></li>
+            <li>3.<p>El tercer problema fue que, como nuestro personaje se mueve con las flechas del
+              teclado, cuando este se movía hacia arriba o hacia abajo la página web lo hacía a su
+              vez, desplazándose y en ocasiones, si el movimiento era continuado, desapareciendo
+              el escenario del juego de la pantalla. Por tanto, para no tener que diferenciar los
+              movimientos, adaptamos el tamaño de esa pestaña a las dimensiones del juego, así ya
+              este queda centrado en la pantalla y con las flechas solo se mueve lo que nosotros
+              queremos, el personaje.</p></li>
+          </ul>
+          <br>
+          <hr>
+          <p>Puntos fuertes:</p>
+          <p>Destacamos como puntos fuertes del proyecto la aleatoriedad del escenario del juego
+            para que, cada vez que carga, y manteniendo el número de bloques dejando un
+            contexto ordenado, haya variaciones y no resulte repetitivo cuando se juega varias
+            veces; y la alteración de la aleatoriedad de las coordenadas en las que aparece la
+            bomba para que, dentro de esa aleatoriedad, se elijan coordenadas cercanas a los
+            movimientos que va siguiendo el personaje y así añadirle al juego más dificultad.</p>
+          <br>
+          <hr>
+          <p>Inicialmente estimamos que con un previo estudio individual de los contenidos de la
+            asignatura y su posterior puesta en común y desarrollo del proyecto durante las clases
+            de laboratorio iba a ser suficiente, porque sentimos que en la primera clase en la que
+            nos dedicamos a exponer nuestras ideas y a planificar las características del videojuego
+            y las posibilidades de implementación de código para las diferentes propuestas.
+            Pronto cuando con los primeros errores nos empezaron a descuadrar los tiempos de la
+            planificación nos dimos cuenta de que nos iba a conllevar más horas por lo que nos
+            repartimos el trabajo en dos equipos, uno se encargó de la lógica y el otro del diseño,
+            trabajamos cada grupo por separado fuera del horario de clase y en la clase de
+            laboratorio poníamos el código en común y acordábamos entre todos el trabajo a
+            hacer para la siguiente.
+            Aún así consideramos que podríamos haber gestionado mejor el tiempo porque hay
+            características del juego que en el primer diseño eran de otra manera pero que,
+            
+            debido a errores en su ejecución, tuvimos que sacrificarlas por soluciones de
+            implementación más sencilla.</p>
+      </section>
+
+      <section class="content_nosotros">
+        <p>Esta página debe reflejar las responsabilidades generales de cada miembro del equipo (es decir, el rol o roles
+          principales de cada uno: coordinación, desarrollo (HTML/CSS/JavaScript), diseño creativo, etc.).</p>
+
+        <p>El código HTML se diseñó durante las primeras sesiones de laboratorio entre todos los
+          miembros del grupo y posteriormente se dividió el proyecto en dos partes; el diseño
+          (CSS) realizado por María Arceo y Xuyu Zhang y la lógica (JavaScript) por Pablo Torralba
+          y Carlota Morales.</p>
+
+          <section class = "contenido">
+            <article class = "post">
+                <h2>Pablo Torralba</h2>
+                <p>Responsable de la lógica JavaScript</p>
+                <img src="img/cerdo1.png" class = "imagen_personal"/>
+                <!--<img src = "cerdo1.png" width = "200" />-->
+                <p>Trabajo realizado en el grupo:</p>
+                <p>Diseño de JavaScript para el juego principal, movimientos, obstáculos, aparición de bombas, diseño del juego, etc</p>
+                
+            </article>
+
+            <article class = "post">
+                <h2>Carlota Morales</h2>
+                <p>Responsable de la lógica JavaScript</p>
+                <img src="img/cerdo2.png" class = "imagen_personal"/>
+                <p>Trabajo realizado en el grupo:</p>
+                <p>Diseño de JavaScript para el juego principal, movimientos, obstáculos, aparición de bombas, diseño del juego, etc</p>
+            </article>
+
+            <article class = "post">
+                <h2>María Arceo</h2>
+                <p>Diseño CSS/parte HTML</p>
+                <img src="img/cerdo3.png" class = "imagen_personal"/>
+                <p>Trabajo realizado en el grupo:</p>
+                <p>Desarrollo parte del HTML(implementado posteriormente) y principalmente parte del diseño de la página web (css). Nav principal, logo, tablas, etc</p>
+            </article> 
+            
+            <article class = "post">
+              <h2>Xuyu Zhang</h2>
+              <p>Diseño CSS/parte HTML</p>
+              <img src="img/cerdo4.png" class = "imagen_personal"/>
+              <p>Trabajo realizado en el grupo:</p>
+              <p>Desarrollo parte del HTML(implementado posteriormente) y principalmente parte del diseño de la página web (css). Nav principal, logo, tablas, etc</p>
+            </article>
+        </section> 
+
+      </section>
+
+      <section class = "content_referencia">
+        <p>Pagina de REFERENCIA</p>
+        <table>
+          <tr>
+          <th>¿Dónde?</th>
+          <th>Enlace</th>
+          </tr>
+          <tr>
+              <td>w3schools</td>
+              <td> <a target = "_blank" href = "https://www.w3schools.com/">Accedo a w3schools</a></td>
+          </tr>
+          <tr>
+          <td>YouTube</td>
+          <td><p>Página donde puedes encontrar un montón de referencias, vídeos tutoriales, entre otras para obtener nuevas ideas y resolver algunas dudas.</p>
+              <p><a target = "_blank" href = "https://www.youtube.com/">Accedo a Youtube</a></p></td>
+          </tr>
+          <tr>
+              <td>Diapositivas</td>
+              <td>
+                <p>Aula Global de la universidad, dentro de la asignatura "Aplicaciones Multimedia" tenemos las diapositivas de clase para la ayuda del desarrollo</p>
+                <a target = "_blank" href = https://aulaglobal.uc3m.es>Aula global Uc3m</a></td>
+          </tr>
+          <td>Fotos</td>
+              <td>
+                <p>El personaje de nuestro juego al ser un personaje de la peli "Las Crónicas de Spiderwick", hemos utilizado una imagen de ello</p>
+                <a target = "_blank" href = https://www.cinemanet.info/2008/03/las-cronicas-de-spiderwick>Cinemanet</a>
+              <t/d>
+                
+          
+      </table>
+      </section>
+
+      <section class = "content">
+        <p>Pagina de MULTIMEDIA</p>
+      </section>
+
+    
+
+
+    
+
+      
+
+    
+
+  <footer>
+          <section class = "content_footer">
+              <!--"mailto:seguido_del_correo" creamos una enlace de la cual al darle nos lleva a correo para enviar un cooreo a la direccion indicada-->
+              <a href = "mailto:groupEuc3m@gmail.com">Contacto por email</a>
+              <br></br>
+          </section>
+          <p>Copyright 2022</p>
+          <p><a target = "_blank" href = https://aulaglobal.uc3m.es>Aula global Uc3m</a></p>
+          
+
+  </footer>
+</body>
+</html>
