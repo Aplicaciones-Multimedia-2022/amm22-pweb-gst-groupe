@@ -10,49 +10,50 @@ body{
   background-image: url('paisaje.jpg');
   
 }
-header{
+/*header{
   width: 500px;
   margin:0 auto;
   background-image: url('cerdonio.jpeg');
   padding: 8rem 10rem;
   border-radius: 50%;
-}
+}*/
 
 #main{
-  background-color: transparent;
+  background-color: #ffffff;
+  opacity: 80%;
   height: 80px;
   position: fixed;
   top:0;
   width: 100%;
+  right: 1px;
 }
 
 .logo{
-  background-image: url('groupE1.png');
+  /*background-image: url('groupE1.png');
   height: 10px;
   position: left;
   top:0;
-  width: 10px;
-  /*color:aliceblue;
+  width: 5px;*/
+  color:black;
   font-size: 30px;
   font-weight: bold;
   padding: 0 40px;
   line-height: 80px;
   text-decoration: none;
-  font-family: 'Rubik Glitch', cursive;*/
+  font-family: 'Rubik Glitch', cursive;
 }
 .column{
   margin: 0px;
-  padding: 10px;
+  padding: 5px;
   
   width: 20%;
 }
-.left{
+/*.left{
   float: left;
   padding: 10px;
   width: 100px;
   height:100px;
-}
-
+}*/
 
 .tab{
   font-size: 20px;
@@ -72,10 +73,18 @@ header{
   width: 200px;
   height: 200px;
   position: relative;
-  left: 25%;
+  /*left: 25%;*/
   
 }
-
+.content_juego {
+  height: 60vh;
+  nav-right: 100px; 
+  background: #d9d9d9;
+  font-size: 20px;
+  font-family: 'Shadows Into Light', cursive;
+  display: none;
+  margin: 0;
+}
 .content {
   height: 2000px;
   nav-right: 100px; 
@@ -124,7 +133,7 @@ footer {
   display: block;
 }
 .currentab {
-  background:rosybrown;
+  background:transparent;
   cursor: default;
 }
 
@@ -153,8 +162,30 @@ section article h2, section article p{
   margin: 1rem;
 
 }
+#myCanvas{
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  width: 900px;
+}
+#playagain{
+  background-color: blueviolet;
+  position: absolute fixed;
+  top: 90px;
+  right: 50px;
+  
+  
+  
 
-footer{
+  font-size: 15px;
+  margin: 0 8px;
+  line-height: 80px;
+  font-family: 'Rubik Glitch', cursive;
+}
+
+/*footer{
   background-color: transparent;
   background-color: transparent;
   padding: 3rem;
@@ -199,6 +230,7 @@ section article h2, section article p{
   margin: 1rem;
 
 }
+
 
 footer{
   background-color: transparent;
@@ -307,3 +339,45 @@ Todo el estilo dentro de @media se le aplicará cuando está a 768px (movil )*/
       display: block;
   }
 }*/
+
+canvas{
+  border:10px solid #d3d3d3;
+  background-image: #f1f1f1;
+}
+
+.nav-toogle{
+  display: none;
+  position: absolute;
+  top: 1.5rem;
+  right: 1rem;
+}
+.open{
+   height: 100vh;
+}
+
+.hidden{
+  display: none;
+}
+
+
+ @media all  and (max-width: 720px){
+   .main{
+     flex-direction: column;
+     align-items: flex-start;
+   }
+   nav{
+     height: 0;
+     width: 100%;
+     overflow: hidden;
+     transition: 250ms height ease-in-out;
+
+   }
+   .tab{
+     display: block;
+     text-align: center;
+     padding: 1.5rem 0;
+   }
+   .nav-toogle{
+     display: block;
+   }
+ }

@@ -2,17 +2,17 @@
 
   <html lang="es">
 	<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 	<title>Práctica JavaScript: pestañas de navegación</title>
 	<script type="text/javascript" src="p2.js"></script>
-    <link rel = "stylesheet" href = "p2.css"/>
+  <link rel = "stylesheet" href = "p2.css"/>
 
     <script src="https://kit.fontawesome.com/ffcc4f344c.js" crossorigin="anonymous"></script>
 
-	<link rel="preconnect" href="https://fonts.googleapis.com">
+	  <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Grape+Nuts&family=Rubik+Glitch&family=Rubik+Moonrocks&family=Smooch+Sans&display=swap" rel="stylesheet">
 
@@ -25,29 +25,34 @@
 	</head>
 	
 	<body>
-		<header></header>
+		<header>
+    <div class = "nav-toogle" id = "navToogle">
+      <img id="navClosed" class="navIcon" src="https://www.richardmiddleton.me/wp-content/themes/richardcodes/assets/img/hamburger.svg" alt="hamburger menu">
+      <img id="navOpen" class="navIcon hidden" src="https://www.richardmiddleton.me/wp-content/themes/richardcodes/assets/img/close.svg" alt="close hamburger">
+    </div>
 		<nav id="main">
-      <div class = "container">
+      <a href = "#" class = "logo nav_link">LOGO</a>
+      <!--<div class = "container tab">
         <img src = "groupE1.png" class = "left">
         
-    </div>
+      </div>-->
             
 
             <!--<button class = "nav_toggle" aria_label="Abrir menú">
                 <i class="fas fa-bars"></i>
             </button>-->
-            
+
 			<span class="tab currentab tab_menu_link">Inicio</span>
 			<span class="tab tab_menu_link">Juego</span>
 			<span class="tab tab_menu_link">Descripion</span>
       <span class="tab tab_menu_link">Desarrollo</span>
-			<span class="tab tab_menu_link">Multimedia</span>
+			<!--<span class="tab tab_menu_link">Multimedia</span>-->
       <span class="tab tab_menu_link">Referencias</span>
-            
+       
             
 		</nav>
         
-		
+  </header>
 		<section class="content current">
 	        <p>Esta es la página de inicio de la web de nuestra empresa</p>
             <p>Nos gusta usar 
@@ -56,11 +61,12 @@
             </p>
         </section>
         
-        <section class="content">
+        <section class="content_juego">
           <p>Contiene el juego en sí.</p>
-          <canvas id="myCanvas"  style="border:10px solid #d3d3d3;", style="background-color: #f1f1f1;"></canvas>
+          <canvas id="myCanvas" ></canvas>
+          <button id = "playagain" onclick = "startGame()">Play again</button>
 
-          </section>
+        </section>
         
         <section class="content">
           <p>Describe el objetivo, temática, instrucciones</p>
@@ -104,11 +110,11 @@
 
         </section>
 
-        <section class="content">
+        <!--<section class="content">
           <p>Esta página integrará un flujo multimedia generado externamente mediante el framework de Gstreamer junto a una
             explicación del mismo.
           </p>
-        </section>
+        </section>-->
 
         <section class="content">
           <p>Esta página debe resumir el proceso de desarrollo del proyecto. Se utilizará para la evaluación</p>
@@ -117,11 +123,11 @@
 
         <section class="content">
           <p>Contendrá el listado de los recursos y referencias utilizados para el desarrollo.</p>
-
         </section>
+
         <br>
         <hr>
-        </br>
+        
 		<footer>
             <section>
                 <!--"mailto:seguido_del_correo" creamos una enlace de la cual al darle nos lleva a correo para enviar un cooreo a la direccion indicada-->
