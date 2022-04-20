@@ -9,9 +9,10 @@ window.onload = function () {
   for (var i = 0; i < tabs.length; i++) {
     tabs[i].addEventListener("click", activateTab);
     tabs[1].addEventListener("click", startGame,);
-  
+
   }
-  
+  document.getElementById("boton").addEventListener("click", startGame);
+
 }
 
 
@@ -30,29 +31,30 @@ function activateTab() {
 }
 
 //Aqui empieza el javascript del Juego
+var explotion;
 var myGamePiece;
 var myScore;
 var myObstacles = [];
-var muro=[];
-var muro1=[];
-var muro2=[];
-var muro3=[];
-var muro4=[];
+var muro = [];
+var muro1 = [];
+var muro2 = [];
+var muro3 = [];
+var muro4 = [];
 
 
 
 
 function startGame() {
-    myGamePiece = new component(50, 50, "https://raw.githubusercontent.com/Aplicaciones-Multimedia-2022/amm22-pweb-gst-groupe/main/hogsqueel_alldir_x2_and_actual.webp%20(2).gif", 359, 250, "image");
-    myScore = new component("30px", "Consolas", "black", 350, 40, "text");
-    myGameArea.start();
+  myGamePiece = new component(50, 60, "https://raw.githubusercontent.com/Aplicaciones-Multimedia-2022/amm22-pweb-gst-groupe/main/ratacara.png", 359, 250, "image");
+  myScore = new component("30px", "Consolas", "black", 350, 40, "text");
+  myGameArea.start();
 }
 
 
 var myGameArea = {
   start: function () {
     var mycanvas = document.getElementById("myCanvas");
-    mycanvas.style.background=  "url(https://raw.githubusercontent.com/Aplicaciones-Multimedia-2022/amm22-pweb-gst-groupe/main/cesped1.jpg)";
+    mycanvas.style.background = "url(https://raw.githubusercontent.com/Aplicaciones-Multimedia-2022/amm22-pweb-gst-groupe/main/cesped1.jpg)";
     mycanvas.width = 900;
     mycanvas.height = 500;
     this.frameNo = 0;
@@ -68,7 +70,7 @@ var myGameArea = {
   },
   clear: function () {
     var mycanvas = document.getElementById("myCanvas");
-var context = mycanvas.getContext('2d');
+    var context = mycanvas.getContext('2d');
     context.clearRect(0, 0, mycanvas.width, mycanvas.height);
   },
   stop: function () {
@@ -79,7 +81,7 @@ var context = mycanvas.getContext('2d');
 
 
 function component(width, height, color, x, y, type) {
-  
+
   this.type = type;
   if (type == "image") {
     this.image = new Image();
@@ -113,6 +115,26 @@ function component(width, height, color, x, y, type) {
   this.newPos = function () {
     this.x += this.speedX;
     this.y += this.speedY;
+    this.touchcanvas();
+  }
+  this.touchcanvas = function () {
+    var rockbottom = 450;
+    var top = -10;
+    var left = -10;
+    var right = 860;
+
+    if (myGamePiece.y > rockbottom) {
+      myGamePiece.y = rockbottom;
+    }
+    if (myGamePiece.y < top) {
+      myGamePiece.y = top;
+    }
+    if (myGamePiece.x < left) {
+      myGamePiece.x = left;
+    }
+    if (myGamePiece.x > right) {
+      myGamePiece.x = right;
+    }
   }
   this.crashWith = function (otherobj) {
     var myleft = this.x;
@@ -129,18 +151,29 @@ function component(width, height, color, x, y, type) {
     }
     return crash;
   }
-  
+  this.crashWithleft = function (otherobj2) {
+    var myleft2 = this.x;
+    var otherright2 = otherobj2.x + (otherobj2.width);
+    var crash2 = true;
+    if (myleft2 > otherright2) {
+      crash2 = false;
+    }
+    return crash2;
+  }
 }
 
 function updateGameArea() {
 
+  
   for (i = 0; i < myObstacles.length; i += 1) {
-    if (myGamePiece.crashWith(myObstacles[i]) && everyinterval(200)) {
+    if (myGamePiece.crashWith(myObstacles[i]) && everyinterval(70)) {
+      explotion = new component(500, 500, "https://raw.githubusercontent.com/Aplicaciones-Multimedia-2022/amm22-pweb-gst-groupe/main/explotion.png", myGamePiece.x - 240, myGamePiece.y - 240, "image");
+      explotion.update();
+      
       return;
     }
   }
- 
-  
+
 
 
   myGameArea.clear();
@@ -154,23 +187,25 @@ function updateGameArea() {
   if (myGameArea.key && myGameArea.key == 39) { moveright() }
   if (myGameArea.key && myGameArea.key == 38) { moveup() }
   if (myGameArea.key && myGameArea.key == 40) { movedown() }
+  
+  
   if (myGameArea.frameNo == 1 || everyinterval(5)) {
     xobstacle1 = Math.floor(Math.random() * 880);
     yobstacle1 = Math.floor(Math.random() * 480);
-    muro.push(new component(40, 40, "https://raw.githubusercontent.com/Aplicaciones-Multimedia-2022/amm22-pweb-gst-groupe/main/pngwing.com%20(2).png", 100, yobstacle1,"image"));
-    
+    muro.push(new component(40, 40, "https://raw.githubusercontent.com/Aplicaciones-Multimedia-2022/amm22-pweb-gst-groupe/main/pngwing.com%20(2).png", 100, yobstacle1, "image"));
+
   }
-  for (i = 0; i <6; i += 1) {
+  for (i = 0; i < 6; i += 1) {
     muro[i].update();
 
   }
   if (myGameArea.frameNo == 1 || everyinterval(5)) {
     xobstacle1 = Math.floor(Math.random() * 880);
     yobstacle1 = Math.floor(Math.random() * 480);
-    muro1.push(new component(40, 40, "https://raw.githubusercontent.com/Aplicaciones-Multimedia-2022/amm22-pweb-gst-groupe/main/pngwing.com%20(2).png", 250, yobstacle1,"image"));
-    
+    muro1.push(new component(40, 40, "https://raw.githubusercontent.com/Aplicaciones-Multimedia-2022/amm22-pweb-gst-groupe/main/pngwing.com%20(2).png", 250, yobstacle1, "image"));
+
   }
-  for (i = 0; i <6; i += 1) {
+  for (i = 0; i < 6; i += 1) {
     muro1[i].update();
 
   }
@@ -178,10 +213,10 @@ function updateGameArea() {
   if (myGameArea.frameNo == 1 || everyinterval(5)) {
     xobstacle1 = Math.floor(Math.random() * 880);
     yobstacle1 = Math.floor(Math.random() * 480);
-    muro2.push(new component(40, 40, "https://raw.githubusercontent.com/Aplicaciones-Multimedia-2022/amm22-pweb-gst-groupe/main/pngwing.com%20(2).png", 450, yobstacle1,"image"));
-    
+    muro2.push(new component(40, 40, "https://raw.githubusercontent.com/Aplicaciones-Multimedia-2022/amm22-pweb-gst-groupe/main/pngwing.com%20(2).png", 450, yobstacle1, "image"));
+
   }
-  for (i = 0; i <6; i += 1) {
+  for (i = 0; i < 6; i += 1) {
     muro2[i].update();
 
   }
@@ -189,27 +224,27 @@ function updateGameArea() {
   if (myGameArea.frameNo == 1 || everyinterval(5)) {
     xobstacle1 = Math.floor(Math.random() * 880);
     yobstacle1 = Math.floor(Math.random() * 480);
-    muro3.push(new component(40, 40, "https://raw.githubusercontent.com/Aplicaciones-Multimedia-2022/amm22-pweb-gst-groupe/main/pngwing.com%20(2).png", 650, yobstacle1,"image"));
-    
+    muro3.push(new component(40, 40, "https://raw.githubusercontent.com/Aplicaciones-Multimedia-2022/amm22-pweb-gst-groupe/main/pngwing.com%20(2).png", 650, yobstacle1, "image"));
+
   }
-  for (i = 0; i <6; i += 1) {
+  for (i = 0; i < 6; i += 1) {
     muro3[i].update();
   }
-    if (myGameArea.frameNo == 1 || everyinterval(5)) {
-      xobstacle1 = Math.floor(Math.random() * 880);
-      yobstacle1 = Math.floor(Math.random() * 480);
-      muro4.push(new component(40, 40, "https://raw.githubusercontent.com/Aplicaciones-Multimedia-2022/amm22-pweb-gst-groupe/main/pngwing.com%20(2).png", 800, yobstacle1,"image"));
-    }
-    for (i = 0; i <6; i += 1) {
-      muro4[i].update();
-  
-    
+  if (myGameArea.frameNo == 1 || everyinterval(5)) {
+    xobstacle1 = Math.floor(Math.random() * 880);
+    yobstacle1 = Math.floor(Math.random() * 480);
+    muro4.push(new component(40, 40, "https://raw.githubusercontent.com/Aplicaciones-Multimedia-2022/amm22-pweb-gst-groupe/main/pngwing.com%20(2).png", 800, yobstacle1, "image"));
   }
-  if (myGameArea.frameNo == 1 || everyinterval(110)) {
-    xobstacle = Math.floor(Math.random() * 150);
-    yobstacle = Math.floor(Math.random() * 150);
-    myObstacles.push(new component(40, 40, "https://cdn-icons-png.flaticon.com/512/32/32128.png",myGamePiece.x+xobstacle,myGamePiece.y+ yobstacle, "image"));
-    
+  for (i = 0; i < 6; i += 1) {
+    muro4[i].update();
+
+
+  }
+  if (myGameArea.frameNo == 1 || everyinterval(100)) {
+    xobstacle = Math.floor(Math.random() * 300);
+    yobstacle = Math.floor(Math.random() * 300);
+    myObstacles.push(new component(40, 40, "https://cdn-icons-png.flaticon.com/512/32/32128.png", myGamePiece.x - 100 + xobstacle, myGamePiece.y - 100 + yobstacle, "image"));
+
 
   }
  
@@ -218,7 +253,7 @@ function updateGameArea() {
     myObstacles = myObstacles.slice(i);
 
   }
- 
+  
 
 }
 
@@ -230,72 +265,77 @@ function everyinterval(n) {
 
 function moveup() {
 
-  myGamePiece = new component(50, 50, "https://raw.githubusercontent.com/Aplicaciones-Multimedia-2022/amm22-pweb-gst-groupe/main/hogsqueel_alldir_x2_and_actual.webp%20(1).gif", myGamePiece.x, myGamePiece.y, "image");
-  for (i = 0; i < muro1.length; i ++) {
-    if ((myGamePiece.crashWith(muro[0])) || (myGamePiece.crashWith(muro[1])) || (myGamePiece.crashWith(muro[2])) || (myGamePiece.crashWith(muro[3])) || (myGamePiece.crashWith(muro[4])) || (myGamePiece.crashWith(muro[5]))
-    || (myGamePiece.crashWith(muro1[0])) || (myGamePiece.crashWith(muro1[1])) || (myGamePiece.crashWith(muro1[2])) || (myGamePiece.crashWith(muro1[3])) || (myGamePiece.crashWith(muro1[4])) || (myGamePiece.crashWith(muro1[5])) 
-    || (myGamePiece.crashWith(muro2[0])) || (myGamePiece.crashWith(muro2[1])) || (myGamePiece.crashWith(muro2[2])) || (myGamePiece.crashWith(muro2[3])) || (myGamePiece.crashWith(muro2[4])) || (myGamePiece.crashWith(muro2[5]))
-    || (myGamePiece.crashWith(muro3[0])) || (myGamePiece.crashWith(muro3[1])) || (myGamePiece.crashWith(muro3[2])) || (myGamePiece.crashWith(muro3[3])) || (myGamePiece.crashWith(muro3[4])) || (myGamePiece.crashWith(muro3[5]))
-    || (myGamePiece.crashWith(muro4[0])) || (myGamePiece.crashWith(muro4[1])) || (myGamePiece.crashWith(muro4[2])) || (myGamePiece.crashWith(muro4[3])) || (myGamePiece.crashWith(muro4[4])) || (myGamePiece.crashWith(muro4[5]))) {
-    break;    
+  myGamePiece = new component(50, 60, "https://raw.githubusercontent.com/Aplicaciones-Multimedia-2022/amm22-pweb-gst-groupe/main/rataespalda.png", myGamePiece.x, myGamePiece.y, "image");
+  for (i = 0; i < muro1.length; i++) {
 
-}else  myGamePiece.speedY = -1;
+    if ((myGamePiece.crashWith(muro[0])) || (myGamePiece.crashWith(muro[1])) || (myGamePiece.crashWith(muro[2])) || (myGamePiece.crashWith(muro[3])) || (myGamePiece.crashWith(muro[4])) || (myGamePiece.crashWith(muro[5]))
+      || (myGamePiece.crashWith(muro1[0])) || (myGamePiece.crashWith(muro1[1])) || (myGamePiece.crashWith(muro1[2])) || (myGamePiece.crashWith(muro1[3])) || (myGamePiece.crashWith(muro1[4])) || (myGamePiece.crashWith(muro1[5]))
+      || (myGamePiece.crashWith(muro2[0])) || (myGamePiece.crashWith(muro2[1])) || (myGamePiece.crashWith(muro2[2])) || (myGamePiece.crashWith(muro2[3])) || (myGamePiece.crashWith(muro2[4])) || (myGamePiece.crashWith(muro2[5]))
+      || (myGamePiece.crashWith(muro3[0])) || (myGamePiece.crashWith(muro3[1])) || (myGamePiece.crashWith(muro3[2])) || (myGamePiece.crashWith(muro3[3])) || (myGamePiece.crashWith(muro3[4])) || (myGamePiece.crashWith(muro3[5]))
+      || (myGamePiece.crashWith(muro4[0])) || (myGamePiece.crashWith(muro4[1])) || (myGamePiece.crashWith(muro4[2])) || (myGamePiece.crashWith(muro4[3])) || (myGamePiece.crashWith(muro4[4])) || (myGamePiece.crashWith(muro4[5]))) {
+        myGamePiece.y=myGamePiece.y+5;
+    } else
+     myGamePiece.speedY = -1;
 
   }
   
-
 }
 
 function movedown() {
-  myGamePiece = new component(50, 50, "https://raw.githubusercontent.com/Aplicaciones-Multimedia-2022/amm22-pweb-gst-groupe/main/hogsqueel_alldir_x2_and_actual.webp%20(2).gif", myGamePiece.x, myGamePiece.y, "image");
-  for (i = 0; i < muro1.length; i ++) {
-    if ((myGamePiece.crashWith(muro[i])) || (myGamePiece.crashWith(muro[1])) || (myGamePiece.crashWith(muro[2])) || (myGamePiece.crashWith(muro[3])) || (myGamePiece.crashWith(muro[4])) || (myGamePiece.crashWith(muro[5]))
-    || (myGamePiece.crashWith(muro1[0])) || (myGamePiece.crashWith(muro1[1])) || (myGamePiece.crashWith(muro1[2])) || (myGamePiece.crashWith(muro1[3])) || (myGamePiece.crashWith(muro1[4])) || (myGamePiece.crashWith(muro1[5])) 
-    || (myGamePiece.crashWith(muro2[0])) || (myGamePiece.crashWith(muro2[1])) || (myGamePiece.crashWith(muro2[2])) || (myGamePiece.crashWith(muro2[3])) || (myGamePiece.crashWith(muro2[4])) || (myGamePiece.crashWith(muro2[5]))
-    || (myGamePiece.crashWith(muro3[0])) || (myGamePiece.crashWith(muro3[1])) || (myGamePiece.crashWith(muro3[2])) || (myGamePiece.crashWith(muro3[3])) || (myGamePiece.crashWith(muro3[4])) || (myGamePiece.crashWith(muro3[5]))
-    || (myGamePiece.crashWith(muro4[0])) || (myGamePiece.crashWith(muro4[1])) || (myGamePiece.crashWith(muro4[2])) || (myGamePiece.crashWith(muro4[3])) || (myGamePiece.crashWith(muro4[4])) || (myGamePiece.crashWith(muro4[5]))) {
-    break;    
-
-}else   myGamePiece.speedY = 1;
-
-  }
-  
+  myGamePiece = new component(50, 60, "https://raw.githubusercontent.com/Aplicaciones-Multimedia-2022/amm22-pweb-gst-groupe/main/ratacara.png", myGamePiece.x, myGamePiece.y, "image");
  
-}
+  for (i = 0; i < muro1.length; i++) {
+    if ((myGamePiece.crashWith(muro[i])) || (myGamePiece.crashWith(muro[1])) || (myGamePiece.crashWith(muro[2])) || (myGamePiece.crashWith(muro[3])) || (myGamePiece.crashWith(muro[4])) || (myGamePiece.crashWith(muro[5]))
+      || (myGamePiece.crashWith(muro1[0])) || (myGamePiece.crashWith(muro1[1])) || (myGamePiece.crashWith(muro1[2])) || (myGamePiece.crashWith(muro1[3])) || (myGamePiece.crashWith(muro1[4])) || (myGamePiece.crashWith(muro1[5]))
+      || (myGamePiece.crashWith(muro2[0])) || (myGamePiece.crashWith(muro2[1])) || (myGamePiece.crashWith(muro2[2])) || (myGamePiece.crashWith(muro2[3])) || (myGamePiece.crashWith(muro2[4])) || (myGamePiece.crashWith(muro2[5]))
+      || (myGamePiece.crashWith(muro3[0])) || (myGamePiece.crashWith(muro3[1])) || (myGamePiece.crashWith(muro3[2])) || (myGamePiece.crashWith(muro3[3])) || (myGamePiece.crashWith(muro3[4])) || (myGamePiece.crashWith(muro3[5]))
+      || (myGamePiece.crashWith(muro4[0])) || (myGamePiece.crashWith(muro4[1])) || (myGamePiece.crashWith(muro4[2])) || (myGamePiece.crashWith(muro4[3])) || (myGamePiece.crashWith(muro4[4])) || (myGamePiece.crashWith(muro4[5]))) {
+    myGamePiece.y=myGamePiece.y-5;
+
+    } else
+     myGamePiece.speedY = 1;
+
+  }}
+
+
+
 
 function moveleft() {
-  myGamePiece = new component(50, 50, "https://raw.githubusercontent.com/Aplicaciones-Multimedia-2022/amm22-pweb-gst-groupe/main/hogsqueel_alldir_x2_and_actual.webp.gif", myGamePiece.x, myGamePiece.y, "image");
-  
-    
-  for (i = 0; i < muro1.length; i ++) {
-    if ((myGamePiece.crashWith(muro[0])) || (myGamePiece.crashWith(muro[1])) || (myGamePiece.crashWith(muro[2])) || (myGamePiece.crashWith(muro[3])) || (myGamePiece.crashWith(muro[4])) || (myGamePiece.crashWith(muro[5]))
-    || (myGamePiece.crashWith(muro1[0])) || (myGamePiece.crashWith(muro1[1])) || (myGamePiece.crashWith(muro1[2])) || (myGamePiece.crashWith(muro1[3])) || (myGamePiece.crashWith(muro1[4])) || (myGamePiece.crashWith(muro1[5])) 
-    || (myGamePiece.crashWith(muro2[0])) || (myGamePiece.crashWith(muro2[1])) || (myGamePiece.crashWith(muro2[2])) || (myGamePiece.crashWith(muro2[3])) || (myGamePiece.crashWith(muro2[4])) || (myGamePiece.crashWith(muro2[5]))
-    || (myGamePiece.crashWith(muro3[0])) || (myGamePiece.crashWith(muro3[1])) || (myGamePiece.crashWith(muro3[2])) || (myGamePiece.crashWith(muro3[3])) || (myGamePiece.crashWith(muro3[4])) || (myGamePiece.crashWith(muro3[5]))
-    || (myGamePiece.crashWith(muro4[0])) || (myGamePiece.crashWith(muro4[1])) || (myGamePiece.crashWith(muro4[2])) || (myGamePiece.crashWith(muro4[3])) || (myGamePiece.crashWith(muro4[4])) || (myGamePiece.crashWith(muro4[5]))) {
-    break;    
 
-}else  myGamePiece.speedX = -1;
+  myGamePiece = new component(50, 60, "https://raw.githubusercontent.com/Aplicaciones-Multimedia-2022/amm22-pweb-gst-groupe/main/rataizq.png", myGamePiece.x, myGamePiece.y, "image");
+
+
+  for (i = 0; i < muro1.length; i++) {
+    if ((myGamePiece.crashWith(muro[0])) || (myGamePiece.crashWith(muro[1])) || (myGamePiece.crashWith(muro[2])) || (myGamePiece.crashWith(muro[3])) || (myGamePiece.crashWith(muro[4])) || (myGamePiece.crashWith(muro[5]))
+      || (myGamePiece.crashWith(muro1[0])) || (myGamePiece.crashWith(muro1[1])) || (myGamePiece.crashWith(muro1[2])) || (myGamePiece.crashWith(muro1[3])) || (myGamePiece.crashWith(muro1[4])) || (myGamePiece.crashWith(muro1[5]))
+      || (myGamePiece.crashWith(muro2[0])) || (myGamePiece.crashWith(muro2[1])) || (myGamePiece.crashWith(muro2[2])) || (myGamePiece.crashWith(muro2[3])) || (myGamePiece.crashWith(muro2[4])) || (myGamePiece.crashWith(muro2[5]))
+      || (myGamePiece.crashWith(muro3[0])) || (myGamePiece.crashWith(muro3[1])) || (myGamePiece.crashWith(muro3[2])) || (myGamePiece.crashWith(muro3[3])) || (myGamePiece.crashWith(muro3[4])) || (myGamePiece.crashWith(muro3[5]))
+      || (myGamePiece.crashWith(muro4[0])) || (myGamePiece.crashWith(muro4[1])) || (myGamePiece.crashWith(muro4[2])) || (myGamePiece.crashWith(muro4[3])) || (myGamePiece.crashWith(muro4[4])) || (myGamePiece.crashWith(muro4[5]))) {
+        myGamePiece.x=myGamePiece.x+5;
+    } else
+    
+  myGamePiece.speedX = -1;
 
   }
-
 }
 
 function moveright() {
-  myGamePiece = new component(50, 50, "https://raw.githubusercontent.com/Aplicaciones-Multimedia-2022/amm22-pweb-gst-groupe/main/hogsqueel_alldir_x2_and_actual.webp%20(3).gif", myGamePiece.x, myGamePiece.y, "image");
-  for (i = 0; i < muro1.length; i ++) {
+
+  myGamePiece = new component(50, 60, "https://raw.githubusercontent.com/Aplicaciones-Multimedia-2022/amm22-pweb-gst-groupe/main/ratadere.png", myGamePiece.x, myGamePiece.y, "image");
+  
+  for (i = 0; i < muro1.length; i++) {
     if ((myGamePiece.crashWith(muro[0])) || (myGamePiece.crashWith(muro[1])) || (myGamePiece.crashWith(muro[2])) || (myGamePiece.crashWith(muro[3])) || (myGamePiece.crashWith(muro[4])) || (myGamePiece.crashWith(muro[5]))
-    || (myGamePiece.crashWith(muro1[0])) || (myGamePiece.crashWith(muro1[1])) || (myGamePiece.crashWith(muro1[2])) || (myGamePiece.crashWith(muro1[3])) || (myGamePiece.crashWith(muro1[4])) || (myGamePiece.crashWith(muro1[5])) 
-    || (myGamePiece.crashWith(muro2[0])) || (myGamePiece.crashWith(muro2[1])) || (myGamePiece.crashWith(muro2[2])) || (myGamePiece.crashWith(muro2[3])) || (myGamePiece.crashWith(muro2[4])) || (myGamePiece.crashWith(muro2[5]))
-    || (myGamePiece.crashWith(muro3[0])) || (myGamePiece.crashWith(muro3[1])) || (myGamePiece.crashWith(muro3[2])) || (myGamePiece.crashWith(muro3[3])) || (myGamePiece.crashWith(muro3[4])) || (myGamePiece.crashWith(muro3[5]))
-    || (myGamePiece.crashWith(muro4[0])) || (myGamePiece.crashWith(muro4[1])) || (myGamePiece.crashWith(muro4[2])) || (myGamePiece.crashWith(muro4[3])) || (myGamePiece.crashWith(muro4[4])) || (myGamePiece.crashWith(muro4[5]))) {
-    break;    
+      || (myGamePiece.crashWith(muro1[0])) || (myGamePiece.crashWith(muro1[1])) || (myGamePiece.crashWith(muro1[2])) || (myGamePiece.crashWith(muro1[3])) || (myGamePiece.crashWith(muro1[4])) || (myGamePiece.crashWith(muro1[5]))
+      || (myGamePiece.crashWith(muro2[0])) || (myGamePiece.crashWith(muro2[1])) || (myGamePiece.crashWith(muro2[2])) || (myGamePiece.crashWith(muro2[3])) || (myGamePiece.crashWith(muro2[4])) || (myGamePiece.crashWith(muro2[5]))
+      || (myGamePiece.crashWith(muro3[0])) || (myGamePiece.crashWith(muro3[1])) || (myGamePiece.crashWith(muro3[2])) || (myGamePiece.crashWith(muro3[3])) || (myGamePiece.crashWith(muro3[4])) || (myGamePiece.crashWith(muro3[5]))
+      || (myGamePiece.crashWith(muro4[0])) || (myGamePiece.crashWith(muro4[1])) || (myGamePiece.crashWith(muro4[2])) || (myGamePiece.crashWith(muro4[3])) || (myGamePiece.crashWith(muro4[4])) || (myGamePiece.crashWith(muro4[5]))) {
+        myGamePiece.x=myGamePiece.x-5;
+    } 
+    else myGamePiece.speedX = 1;
 
-}else   myGamePiece.speedX = 1;
-
+  
   }
-  
-  
+
 }
 
 function clearmove() {
@@ -306,7 +346,7 @@ function clearmove() {
 function clickPlayagain() {
   reset();
   startGame();
-  
+
 
 }
 
@@ -314,10 +354,10 @@ function reset() {
   myGamePiece = undefined;
   myObstacles = [];
   myScore = "";
-  
+
 }
 
-/*NUEVO COD */
+/*NUEVO COD 
 const navToggle = document.querySelector('#navToggle');
 const nav = document.querySelector('nav');
 const navIcon = document.querySelectorAll('.navIcon')
@@ -332,7 +372,7 @@ navToggle.addEventListener("click", () =>{
 window.addEventListener("resize", () => {
   
 })
-/*END NUEVO COD*/ 
+END NUEVO COD*/
 
 
 
