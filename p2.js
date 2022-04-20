@@ -45,7 +45,7 @@ var muro4 = [];
 
 
 function startGame() {
-  myGamePiece = new component(50, 60, "https://raw.githubusercontent.com/Aplicaciones-Multimedia-2022/amm22-pweb-gst-groupe/main/ratacara.png", 359, 250, "image");
+  myGamePiece = new component(50, 60, "https://raw.githubusercontent.com/Aplicaciones-Multimedia-2022/amm22-pweb-gst-groupe/main/img/ratacara.png", 359, 250, "image");
   myScore = new component("30px", "Consolas", "black", 350, 40, "text");
   myGameArea.start();
 }
@@ -54,7 +54,7 @@ function startGame() {
 var myGameArea = {
   start: function () {
     var mycanvas = document.getElementById("myCanvas");
-    mycanvas.style.background = "url(https://raw.githubusercontent.com/Aplicaciones-Multimedia-2022/amm22-pweb-gst-groupe/main/cesped1.jpg)";
+    mycanvas.style.background = "url(https://raw.githubusercontent.com/Aplicaciones-Multimedia-2022/amm22-pweb-gst-groupe/main/img/cesped1.jpg)";
     mycanvas.width = 900;
     mycanvas.height = 500;
     this.frameNo = 0;
@@ -167,7 +167,7 @@ function updateGameArea() {
   
   for (i = 0; i < myObstacles.length; i += 1) {
     if (myGamePiece.crashWith(myObstacles[i]) && everyinterval(70)) {
-      explotion = new component(500, 500, "https://raw.githubusercontent.com/Aplicaciones-Multimedia-2022/amm22-pweb-gst-groupe/main/explotion.png", myGamePiece.x - 240, myGamePiece.y - 240, "image");
+      explotion = new component(500, 500, "https://raw.githubusercontent.com/Aplicaciones-Multimedia-2022/amm22-pweb-gst-groupe/main/img/explotion.png", myGamePiece.x - 240, myGamePiece.y - 240, "image");
       explotion.update();
       
       return;
@@ -192,7 +192,7 @@ function updateGameArea() {
   if (myGameArea.frameNo == 1 || everyinterval(5)) {
     xobstacle1 = Math.floor(Math.random() * 880);
     yobstacle1 = Math.floor(Math.random() * 480);
-    muro.push(new component(40, 40, "https://raw.githubusercontent.com/Aplicaciones-Multimedia-2022/amm22-pweb-gst-groupe/main/pngwing.com%20(2).png", 100, yobstacle1, "image"));
+    muro.push(new component(40, 40, "https://raw.githubusercontent.com/Aplicaciones-Multimedia-2022/amm22-pweb-gst-groupe/main/img/pngwing.com%20(2).png", 100, yobstacle1, "image"));
 
   }
   for (i = 0; i < 6; i += 1) {
@@ -202,7 +202,7 @@ function updateGameArea() {
   if (myGameArea.frameNo == 1 || everyinterval(5)) {
     xobstacle1 = Math.floor(Math.random() * 880);
     yobstacle1 = Math.floor(Math.random() * 480);
-    muro1.push(new component(40, 40, "https://raw.githubusercontent.com/Aplicaciones-Multimedia-2022/amm22-pweb-gst-groupe/main/pngwing.com%20(2).png", 250, yobstacle1, "image"));
+    muro1.push(new component(40, 40, "https://raw.githubusercontent.com/Aplicaciones-Multimedia-2022/amm22-pweb-gst-groupe/main/img/pngwing.com%20(2).png", 250, yobstacle1, "image"));
 
   }
   for (i = 0; i < 6; i += 1) {
@@ -213,7 +213,7 @@ function updateGameArea() {
   if (myGameArea.frameNo == 1 || everyinterval(5)) {
     xobstacle1 = Math.floor(Math.random() * 880);
     yobstacle1 = Math.floor(Math.random() * 480);
-    muro2.push(new component(40, 40, "https://raw.githubusercontent.com/Aplicaciones-Multimedia-2022/amm22-pweb-gst-groupe/main/pngwing.com%20(2).png", 450, yobstacle1, "image"));
+    muro2.push(new component(40, 40, "https://raw.githubusercontent.com/Aplicaciones-Multimedia-2022/amm22-pweb-gst-groupe/main/img/pngwing.com%20(2).png", 450, yobstacle1, "image"));
 
   }
   for (i = 0; i < 6; i += 1) {
@@ -224,7 +224,7 @@ function updateGameArea() {
   if (myGameArea.frameNo == 1 || everyinterval(5)) {
     xobstacle1 = Math.floor(Math.random() * 880);
     yobstacle1 = Math.floor(Math.random() * 480);
-    muro3.push(new component(40, 40, "https://raw.githubusercontent.com/Aplicaciones-Multimedia-2022/amm22-pweb-gst-groupe/main/pngwing.com%20(2).png", 650, yobstacle1, "image"));
+    muro3.push(new component(40, 40, "https://raw.githubusercontent.com/Aplicaciones-Multimedia-2022/amm22-pweb-gst-groupe/main/img/pngwing.com%20(2).png", 650, yobstacle1, "image"));
 
   }
   for (i = 0; i < 6; i += 1) {
@@ -233,7 +233,7 @@ function updateGameArea() {
   if (myGameArea.frameNo == 1 || everyinterval(5)) {
     xobstacle1 = Math.floor(Math.random() * 880);
     yobstacle1 = Math.floor(Math.random() * 480);
-    muro4.push(new component(40, 40, "https://raw.githubusercontent.com/Aplicaciones-Multimedia-2022/amm22-pweb-gst-groupe/main/pngwing.com%20(2).png", 800, yobstacle1, "image"));
+    muro4.push(new component(40, 40, "https://raw.githubusercontent.com/Aplicaciones-Multimedia-2022/amm22-pweb-gst-groupe/main/img/pngwing.com%20(2).png", 800, yobstacle1, "image"));
   }
   for (i = 0; i < 6; i += 1) {
     muro4[i].update();
@@ -265,7 +265,7 @@ function everyinterval(n) {
 
 function moveup() {
 
-  myGamePiece = new component(50, 60, "https://raw.githubusercontent.com/Aplicaciones-Multimedia-2022/amm22-pweb-gst-groupe/main/rataespalda.png", myGamePiece.x, myGamePiece.y, "image");
+  myGamePiece = new component(50, 60, "https://raw.githubusercontent.com/Aplicaciones-Multimedia-2022/amm22-pweb-gst-groupe/main/img/rataespalda.png", myGamePiece.x, myGamePiece.y, "image");
   for (i = 0; i < muro1.length; i++) {
 
     if ((myGamePiece.crashWith(muro[0])) || (myGamePiece.crashWith(muro[1])) || (myGamePiece.crashWith(muro[2])) || (myGamePiece.crashWith(muro[3])) || (myGamePiece.crashWith(muro[4])) || (myGamePiece.crashWith(muro[5]))
@@ -282,7 +282,7 @@ function moveup() {
 }
 
 function movedown() {
-  myGamePiece = new component(50, 60, "https://raw.githubusercontent.com/Aplicaciones-Multimedia-2022/amm22-pweb-gst-groupe/main/ratacara.png", myGamePiece.x, myGamePiece.y, "image");
+  myGamePiece = new component(50, 60, "https://raw.githubusercontent.com/Aplicaciones-Multimedia-2022/amm22-pweb-gst-groupe/main/img/ratacara.png", myGamePiece.x, myGamePiece.y, "image");
  
   for (i = 0; i < muro1.length; i++) {
     if ((myGamePiece.crashWith(muro[i])) || (myGamePiece.crashWith(muro[1])) || (myGamePiece.crashWith(muro[2])) || (myGamePiece.crashWith(muro[3])) || (myGamePiece.crashWith(muro[4])) || (myGamePiece.crashWith(muro[5]))
@@ -302,7 +302,7 @@ function movedown() {
 
 function moveleft() {
 
-  myGamePiece = new component(50, 60, "https://raw.githubusercontent.com/Aplicaciones-Multimedia-2022/amm22-pweb-gst-groupe/main/rataizq.png", myGamePiece.x, myGamePiece.y, "image");
+  myGamePiece = new component(50, 60, "https://raw.githubusercontent.com/Aplicaciones-Multimedia-2022/amm22-pweb-gst-groupe/main/img/rataizq.png", myGamePiece.x, myGamePiece.y, "image");
 
 
   for (i = 0; i < muro1.length; i++) {
@@ -321,7 +321,7 @@ function moveleft() {
 
 function moveright() {
 
-  myGamePiece = new component(50, 60, "https://raw.githubusercontent.com/Aplicaciones-Multimedia-2022/amm22-pweb-gst-groupe/main/ratadere.png", myGamePiece.x, myGamePiece.y, "image");
+  myGamePiece = new component(50, 60, "https://raw.githubusercontent.com/Aplicaciones-Multimedia-2022/amm22-pweb-gst-groupe/main/img/ratadere.png", myGamePiece.x, myGamePiece.y, "image");
   
   for (i = 0; i < muro1.length; i++) {
     if ((myGamePiece.crashWith(muro[0])) || (myGamePiece.crashWith(muro[1])) || (myGamePiece.crashWith(muro[2])) || (myGamePiece.crashWith(muro[3])) || (myGamePiece.crashWith(muro[4])) || (myGamePiece.crashWith(muro[5]))
